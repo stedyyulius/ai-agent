@@ -55,6 +55,7 @@ func ListenToWhatsapp(w http.ResponseWriter, r *http.Request) {
 	removedTaggedMessage := strings.ReplaceAll(data.Body, os.Getenv("WHATSAPP_NUMBER"), "")
 
 	if strings.Contains(data.From, "g.us") && data.IsMentioned {
+
 		responseText, err := ProcessChat(removedTaggedMessage, helpers.RetrieveChatHistory(data.To))
 
 		if err != nil {
@@ -71,6 +72,7 @@ func ListenToWhatsapp(w http.ResponseWriter, r *http.Request) {
 		helpers.StoreChatHistory(data.To, responseText)
 
 	} else if strings.Contains(data.From, "c.us") {
+
 		responseText, err := ProcessChat(removedTaggedMessage, helpers.RetrieveChatHistory(data.From))
 		if err != nil {
 			SendWhatsappMessage(data.From, "Error: "+err.Error())
@@ -95,8 +97,9 @@ func SendWhatsappMessage(receiverID, replyMessage string) error {
 	apiToken := os.Getenv("WHATSAPP_TOKEN")
 
 	url := fmt.Sprintf("https://api.ultramsg.com/%s/messages/chat", instanceID)
-	payload := fmt.Sprintf("token=%s&to=%s&body=%s", apiToken, receiverID, replyMessage)
 
+	payload := fmt.Sprintf("token=%s&to=%s&body=%s", apiToken, receiverID, replyMessage)
+	
 	req, err := http.NewRequest("POST", url, bytes.NewBufferString(payload))
 	if err != nil {
 		return fmt.Errorf("failed to create request: %w", err)

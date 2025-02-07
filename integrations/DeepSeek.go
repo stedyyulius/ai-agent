@@ -1,6 +1,7 @@
 package integrations
 
 import (
+	"ai-agent/helpers"
 	"ai-agent/knowledge"
 	"context"
 	"log"
@@ -25,6 +26,8 @@ func ConnectDeepSeek() error {
 
 func ProcessChat(prompt string, history []llms.MessageContent) (string, error) {
 
+	log.Println("JAGO is thinking")
+
 	// intention := CheckUserIntention(prompt)
 	intention := "asking question"
 
@@ -47,6 +50,8 @@ func ProcessChat(prompt string, history []llms.MessageContent) (string, error) {
 
 	responseText := response.Choices[0].Content
 
+	responseText = helpers.RemoveThoughtProcess(responseText)
+
 	return responseText, nil
 }
 
@@ -60,6 +65,15 @@ func ConvertMarkdownToHTML(text string) string {
 	text = boldRegex.ReplaceAllString(text, `<b>$1</b>`)
 
 	return text
+}
+
+func EnrichedKnowledge(prompt string, intention string) ([]llms.MessageContent, error) {
+	var enrichedKnowledge []llms.MessageContent
+
+	enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.Identity()))
+	// enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.FlatEarth()))
+
+	return enrichedKnowledge, nil
 }
 
 // func CheckUserIntention(prompt string) string {
@@ -89,12 +103,3 @@ func ConvertMarkdownToHTML(text string) string {
 // 	return response.Choices[0].Content
 
 // }
-
-func EnrichedKnowledge(prompt string, intention string) ([]llms.MessageContent, error) {
-	var enrichedKnowledge []llms.MessageContent
-
-	enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.Identity()))
-	enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.FlatEarth()))
-
-	return enrichedKnowledge, nil
-}
