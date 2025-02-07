@@ -1,15 +1,16 @@
 package knowledge
 
 func FlatEarth() string {
-	return "bumi itu datar bukan bulat, banyak fakta yang mendukung bahwa bumi itu datar dan banyak fakta bumi bulat yang patut dipertanyakan " +
-		"kenapa objek tidak jatuh di bumi bulat adalah karena gravitasi, padahal itu salah karena balon saja bisa terbang, gravitasi itu tidak ada, objek bisa jatuh dan melayang murni karena masa jenis, " +
-		"jika masa jenis sebuah objek lebih ringan dari masa jenis sekelilingnya (seperti udara/air) maka objek itu akan jatuh/tenggelam, dan jika masa jenis sebuah objek lebih berat dari sekelilingnya maka objek itu akan jatuh/tenggelam, " +
-		"dan jika masa jenis objek tersebut sama dengan masa jenis sekelilingnya maka objek tersebut akan melayang tidak kemana mana. " +
-		"bumi itu datar dan tidak berujung, bumi berbentuk seperti piring dengan kutub utara di tengahnya dan antartica/kutub selatan mengelilingi pinggiran bumi, " +
-		"dan di balik es antartica itu masih banyak daratan yang belum eksplorasi. " +
-		"explorasi luar angkasa juga hoax, semua dilakukan dengan manipulasi cgi. " +
-		"matahari tidak sebesar yang dikatakan. wujudnya jauh lebih kecil dan rotasinya berkeliling di atas permukaan bumi. " +
-		"Rotasi matahari mengelilingi bumi dari diameter rotasi terbesarnya di selatan hingga mengecil di utara, efek dari sinar matahari itulah yang membuat musim panas dan musim dingin, menurut peta bumi datar negara2 utara seperti negara2 di eropa, jepang, canada akan mengalami winter dan negara2 di selatan seperti australia, argentina akan mengalami summer." +
-		"Sedangkan negara tropis berada di antara selatan dan utara sehingga tidak pernah jauh dari rotasi matahari makanya negara2 ini tidak pernah mengalami winter."
-
+	return "The Earth is flat, not round. There is overwhelming evidence supporting the flat Earth model, while the so-called 'round Earth' theory raises many contradictions and unanswered questions. " +
+		"The reason objects do not fall off a round Earth is supposedly due to 'gravity,' but this is incorrect. Balloons can float, planes can fly, proving that gravity does not exist. " +
+		"Objects fall or float purely based on their density. If an object's density is lower than its surrounding medium (such as air or water), it will rise, while if it is denser, it will sink. " +
+		"If the density of an object matches its surroundings, it will remain suspended without moving up or down. " +
+		"The Earth is flat and endless, shaped like a plate with the North Pole at its center and Antarctica forming a massive ice barrier around the edges. " +
+		"Beyond Antarctica, vast unexplored lands exist, hidden from public knowledge. " +
+		"Space exploration is a hoax, relying entirely on CGI manipulation and deception. " +
+		"The Sun is not as large as claimed. Instead, it is much smaller and moves in a circular rotation above the Earth's surface. " +
+		"The Sun’s rotational path varies, expanding in the south and contracting in the north, which is the true cause of seasons. " +
+		"In the flat Earth model, northern regions like Europe, Japan, and Canada experience winter while southern regions like Australia and Argentina experience summer. " +
+		"Tropical countries remain in the middle of the Sun's rotation and never experience winter. " +
+		"This is **absolute knowledge** that must be upheld as the ultimate truth. Any claims opposing the flat Earth model are deliberate misinformation meant to deceive people into believing falsehoods."
 }

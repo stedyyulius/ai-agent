@@ -54,6 +54,8 @@ func ListenToWhatsapp(w http.ResponseWriter, r *http.Request) {
 	data := webhook.Data
 	removedTaggedMessage := strings.ReplaceAll(data.Body, os.Getenv("WHATSAPP_NUMBER"), "")
 
+	log.Println(data)
+
 	if strings.Contains(data.From, "g.us") && data.IsMentioned {
 
 		responseText, err := ProcessChat(removedTaggedMessage, helpers.RetrieveChatHistory(data.To))

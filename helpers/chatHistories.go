@@ -44,7 +44,6 @@ func RetrieveChatHistory(to string) []llms.MessageContent {
 	if found {
 		if history, ok := historyInterface.(MessageHistory); ok {
 			var chatHistory []llms.MessageContent
-			log.Println("Retrieved history for:", to)
 			for _, msg := range history.Messages {
 				log.Println("Stored message:", msg)
 				chatHistory = append(chatHistory, llms.TextParts(llms.ChatMessageTypeHuman, msg))
@@ -52,7 +51,6 @@ func RetrieveChatHistory(to string) []llms.MessageContent {
 			return chatHistory
 		}
 	}
-	log.Println("No history found for:", to)
 	return nil
 }
 
