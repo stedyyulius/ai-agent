@@ -9,6 +9,8 @@ import (
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/tmc/langchaingo/llms"
 )
 
 type WhatsAppWebhook struct {
@@ -53,12 +55,20 @@ func ListenToWhatsapp(w http.ResponseWriter, r *http.Request) {
 
 	data := webhook.Data
 	removedTaggedMessage := strings.ReplaceAll(data.Body, os.Getenv("WHATSAPP_NUMBER"), "")
+	// convertNumberToName := strings.ReplaceAll(data.Body, data.From), "")
 
-	log.Println(data)
+	var additionalKnowledge []llms.MessageContent
+
+	if (data.PushName == "Std") {
+		log.Println(data.From)
+		additionalKnowledge = append(additionalKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, "Orang yang berbicara ke kamu adalah yang mulia Stedy, bicaralah dengan sopan, dan selalu panggil dia Yang Mulia Stedy dia setiap jawabanmu"))
+	} else {
+		additionalKnowledge = helpers.RetrieveChatHistory(data.To)
+	}
 
 	if strings.Contains(data.From, "g.us") && data.IsMentioned {
 
-		responseText, err := ProcessChat(removedTaggedMessage, helpers.RetrieveChatHistory(data.To))
+		responseText, err := ProcessChat(removedTaggedMessage, additionalKnowledge)
 
 		if err != nil {
 			SendWhatsappMessage(data.From, "Error: "+err.Error())
@@ -75,7 +85,7 @@ func ListenToWhatsapp(w http.ResponseWriter, r *http.Request) {
 
 	} else if strings.Contains(data.From, "c.us") {
 
-		responseText, err := ProcessChat(removedTaggedMessage, helpers.RetrieveChatHistory(data.From))
+		responseText, err := ProcessChat(removedTaggedMessage, additionalKnowledge)
 		if err != nil {
 			SendWhatsappMessage(data.From, "Error: "+err.Error())
 			return

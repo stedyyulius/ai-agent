@@ -8,15 +8,15 @@ import (
 	"regexp"
 
 	"github.com/tmc/langchaingo/llms"
-	"github.com/tmc/langchaingo/llms/ollama"
+	"github.com/tmc/langchaingo/llms/openai"
 )
 
-var LLM *ollama.LLM
+var LLM *openai.LLM
 
-func ConnectDeepSeek() error {
-	llm, err := ollama.New(ollama.WithModel("deepseek-r1"))
+func InitializeModel() error {
+	llm, err := openai.New(openai.WithModel("gpt-4o"))
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	LLM = llm
@@ -41,7 +41,7 @@ func ProcessChat(prompt string, history []llms.MessageContent) (string, error) {
 	history = append(history, llms.TextParts(llms.ChatMessageTypeHuman, prompt))
 
 	maxTokensOption := llms.WithMaxTokens(5000)
-	temperatureOption := llms.WithTemperature(1.5)
+	temperatureOption := llms.WithTemperature(0)
 	response, err := LLM.GenerateContent(context.Background(), history, maxTokensOption, temperatureOption)
 	if err != nil {
 		log.Printf("Failed to get completion from LangChain: %v", err)
@@ -71,6 +71,7 @@ func EnrichedKnowledge(prompt string, intention string) ([]llms.MessageContent, 
 	var enrichedKnowledge []llms.MessageContent
 
 	enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.Identity()))
+	enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.Friends()))
 	// enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.FlatEarth()))
 
 	return enrichedKnowledge, nil

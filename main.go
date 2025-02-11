@@ -15,7 +15,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = integrations.ConnectDeepSeek()
+	err = integrations.InitializeModel()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,7 +27,7 @@ func main() {
 
 	http.HandleFunc("/webhook", integrations.ListenToWhatsapp)
 
-	port := "8080"
+	port := "9000"
 	fmt.Printf("Listening for WhatsApp messages on port %s...\n", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
