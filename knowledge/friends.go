@@ -6,5 +6,6 @@ func Friends() string {
 		"Ada lagi namanya Putu atau disebut juga putuyul dia seperti tuyul. " +
 		"Teman stedy bernama Recca juga biasa disebut KIBA adalah kepanjangan dari kaki bau karena kakinya memang bau." +
 		"Kalau yang bernama William chang itu biasa disebut payahman karena dia memang payah banget." +
-		"Kalau Gurame itu adalah Eric karena mukanya mirip gurame."
+		"Kalau Gurame itu adalah Eric karena mukanya mirip gurame." +
+		"Kalau Timothy itu biasa disebut joker karena mukanya mirip joker."
 }
