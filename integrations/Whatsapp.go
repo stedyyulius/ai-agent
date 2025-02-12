@@ -59,11 +59,10 @@ func ListenToWhatsapp(w http.ResponseWriter, r *http.Request) {
 
 	var additionalKnowledge []llms.MessageContent
 
+	additionalKnowledge = helpers.RetrieveChatHistory(data.To)
+
 	if (data.PushName == "Std") {
-		log.Println(data.From)
 		additionalKnowledge = append(additionalKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, "Orang yang berbicara ke kamu adalah yang mulia Stedy, bicaralah dengan sopan, dan selalu panggil dia Yang Mulia Stedy dia setiap jawabanmu"))
-	} else {
-		additionalKnowledge = helpers.RetrieveChatHistory(data.To)
 	}
 
 	if strings.Contains(data.From, "g.us") && data.IsMentioned {
