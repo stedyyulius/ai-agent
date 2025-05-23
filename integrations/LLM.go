@@ -72,6 +72,7 @@ func EnrichedKnowledge(prompt string, intention string) ([]llms.MessageContent, 
 
 	enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.Identity()))
 	enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.Friends()))
+	enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.Siblings()))
 	// enrichedKnowledge = append(enrichedKnowledge, llms.TextParts(llms.ChatMessageTypeSystem, knowledge.FlatEarth()))
 
 	return enrichedKnowledge, nil
